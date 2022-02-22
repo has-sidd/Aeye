@@ -2,40 +2,41 @@
 
     include 'conn.php';
 
-    if (isset($_POST['submit'])){
-        $extension = array('jpeg', 'jpg', 'png');
+    if (isset($_POST['submit']) && isset($_POST['mrno']) && isset($_POST['orientation']) && isset($_POST['device']))
+    {
+        $extension = array('jpeg', 'jpg', 'png', 'tiff');
+        $createTime=date('Y-m-d h:i:s');
+
+        $mrNo = $_POST['mrno'];
+        $orientation = $_POST['orientation'];
+        $device = $_POST['device'];
 
         foreach ($_FILES['images']['tmp_name'] as $key  => $value) {
-            $filename = $_FILES['images']['name'][$key];
-            $filename_tmp = $_FILES['images']['tmp_name'][$key];
-            echo '<br/>';
-            $ext=pathinfo($filename, PATHINFO_EXTENSION);
 
             $finalimg = '';
             $img_dir= '';
 
-            if(in_array($ext, $extension)){
-                if(!file_exists('../uploads/'.$filename))
-                {
-                    move_uploaded_file($filename_tmp, '../uploads/'.$filename);
-                    $finalimg=$filename;
-                    $img_dir='./assets/uploads/'.$filename;
-                }else{  
-                    $filename = str_replace('.', '-', basename($filename, $ext));
-                    $newfilename=$filename.time().".".$ext;
-                    move_uploaded_file($filename_tmp, '../uploads/'.$newfilename);
-                    $finalimg=$newfilename;
-                    $img_dir='./assets/uploads/'.$newfilename;
-                }
-                
-                $createTime=date('Y-m-d h:i:s');
-                //insert
+            $filename = $_FILES['images']['name'][$key];
+            $filename_tmp = $_FILES['images']['tmp_name'][$key];
+            $ext=pathinfo($filename, PATHINFO_EXTENSION);
 
-                $query = "INSERT INTO `uploads`(`image_name`, `img_dir`, `image_create_time`) VALUES ('$finalimg', '$img_dir', '$createTime')";
+            $newname = $mrNo. "_" .$orientation. "_" .$device . "." .$ext;
+
+            if(in_array($ext, $extension)){
+                if(!file_exists('../uploads/'.$newname))
+                {
+                    move_uploaded_file($filename_tmp, '../uploads/'.$newname);
+                    $finalimg=$newname;
+                    $img_dir='./assets/uploads/'.$newname;
+                }
+            
+                //insert
+                $query = "INSERT INTO `uploads`(`image_name`, `mr_no`, `img_orientation`, `device_type`, `img_dir`, `image_create_time`) VALUES ('$finalimg', '$mrNo', '$orientation', '$device', '$img_dir', '$createTime')";
                 mysqli_query($conn, $query);
 
                 header('location: ../../tech.php');
             };
         };
+        
     };
 ?>
