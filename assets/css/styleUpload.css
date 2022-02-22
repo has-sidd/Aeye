@@ -3,7 +3,24 @@
 footer
 --------------------------------------------- 
 */
-
+textarea:hover, 
+input:hover, 
+textarea:active, 
+input:active, 
+textarea:focus, 
+input:focus,
+button:focus,
+select:focus,
+button:active,
+button:hover,
+label:focus,
+.btn:active,
+.btn.active
+{
+    outline:0px !important;
+    -webkit-appearance:none;
+    box-shadow: none !important;
+}
 footer {
   /* margin-top: 60px; */
   padding: 50px 0px;
@@ -118,7 +135,7 @@ footer .right-text-content ul li a:hover {
   color: #12457B;
   font-size: 25px;
   margin: 0;
-  padding: 50px 0;
+  padding: 30px 0;
 }
 .upload .upload-files .first p i {
   transform: translateY(20px);
@@ -145,16 +162,45 @@ footer .right-text-content ul li a:hover {
           animation: faderight 1s 1.5s ease both;
 }
 .upload .upload-files .body {
+  padding-top: 20px;
+}
+.upload .upload-files .body-footer {
   text-align: center;
-  padding: 50px 0;
-  padding-bottom: 30px;
+  padding-top: 30px;
 }
-.upload .upload-files .body.hidden {
+.upload .upload-files .body .options{
+  padding: 0 10px 10px 10px;
+  text-align: center;
+}
+.upload .upload-files .body .option-body{
+  display: flex;
+  justify-content: center;
+}
+.upload .upload-files .body .options .orientation-check{
+  font-size: 15px;
+  margin: 20px 20px 4px 20px;
+}
+.upload .upload-files .body .options .device-type{
+  width: 75%;
+  margin-top: 16px;
+}
+.upload .upload-files .body .options .mr-input{
+  margin-top: 16px;
+  width: 75%;
+}
+.upload .upload-files .body .options .heading{
+  color: #12457B;
+  font-size: 16px;
+  margin: 0;
+  
+}
+/* .upload .upload-files .body.hidden {
   display: none;
-}
-.upload .upload-files .body input {
+} */
+.upload .upload-files .body .img-input {
   visibility: hidden;
 }
+
 .upload .upload-files .body i {
   font-size: 65px;
   color: lightgray;
@@ -397,6 +443,14 @@ footer .right-text-content ul li a:hover {
   background: #12457B;
   color: #fff;
 }
+
+/* error  */
+.error{
+  /* margin-top: 1rem; */
+  /* margin-left: 0.3rem; */
+  display: none;
+  text-transform: none;
+}
 @-webkit-keyframes fadeup {
   to {
     transform: translateY(0);
@@ -430,6 +484,28 @@ footer .right-text-content ul li a:hover {
   to {
     opacity: 1;
   }
+}
+
+/* media queries */
+@media (max-width: 768px) {
+  .upload .upload-files .body .options .heading{
+    font-size: 15px;
+  }
+}
+@media (max-width: 576px) {
+  .upload .upload-files .body .options .heading{
+    font-size: 16px;
+  }
+  .upload .upload-files .body .option-body{
+    justify-content: start;
+  }
+  .upload .upload-files .body .options{
+    padding: 0 30px 0 30px;
+    text-align: left;
+  }
+  .upload .upload-files .body-footer {
+    padding-top: 20px;
+}
 }
 @media (max-width: 400px) {
   .upload {
