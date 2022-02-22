@@ -49,22 +49,22 @@ App.init = function () {
   });
 
   // drop events
-  $("#drop").ondragleave = evt => {
-    $("#drop").classList.remove("active");
-    evt.preventDefault();
-  };
-  $("#drop").ondragover = $("#drop").ondragenter = evt => {
-    $("#drop").classList.add("active");
+  // $("#drop").ondragleave = evt => {
+  //   $("#drop").classList.remove("active");
+  //   evt.preventDefault();
+  // };
+  // $("#drop").ondragover = $("#drop").ondragenter = evt => {
+  //   $("#drop").classList.add("active");
     
-    evt.preventDefault();
-  };
-  $("#drop").ondrop = evt => {
-    $("input[type=file]").files = evt.dataTransfer.files;
-    $(".second").classList.add("hasFiles");
-    $("#drop").classList.remove("active");
-    $("#drop").classList.add("hidden");
-    evt.preventDefault();
-  };
+  //   evt.preventDefault();
+  // };
+  // $("#drop").ondrop = evt => {
+  //   $("input[type=file]").files = evt.dataTransfer.files;
+  //   $(".second").classList.add("hasFiles");
+  //   $("#drop").classList.remove("active");
+  //   // $("#drop").classList.add("hidden");
+  //   evt.preventDefault();
+  // };
 
   //upload more
   $(".importar").addEventListener("click", () => {
